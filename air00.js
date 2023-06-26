@@ -14,3 +14,24 @@ les
 gars
 
 Afficher error et quitter le programme en cas de problèmes d’arguments.*/
+
+const split = (stringToCut, stringSeparator) => {
+  const array = [];
+  let currentSubstring = "";
+  for (let i = 0; i < stringToCut.length; i++) {
+    const char = stringToCut[i];
+    if (stringSeparator.includes(char)) {
+      array.push(currentSubstring);
+      currentSubstring = "";
+    } else {
+      currentSubstring += char;
+    }
+  }
+  array.push(currentSubstring); // Ajoute la dernière sous-chaîne restante au tableau
+  return array;
+};
+
+const stringToCut = process.argv[2];
+const stringSeparator = [" ", "\t", "\n"]; // Tableau de séparateurs
+
+console.log(split(stringToCut, stringSeparator));
