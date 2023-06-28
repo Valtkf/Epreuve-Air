@@ -15,23 +15,35 @@ gars
 
 Afficher error et quitter le programme en cas de problèmes d’arguments.*/
 
-const split = (stringToCut, stringSeparator) => {
+// fonction
+const splitedString = (stringToCut, stringToSeparate) => {
+  let newWordSplit = "";
   const array = [];
-  let currentSubstring = "";
+
   for (let i = 0; i < stringToCut.length; i++) {
-    const char = stringToCut[i];
-    if (stringSeparator.includes(char)) {
-      array.push(currentSubstring);
-      currentSubstring = "";
+    const currentChar = stringToCut[i];
+
+    if (currentChar === stringToSeparate) {
+      if (newWordSplit !== "") {
+        array.push(newWordSplit);
+        newWordSplit = "";
+      }
     } else {
-      currentSubstring += char;
+      newWordSplit += currentChar;
     }
   }
-  array.push(currentSubstring); // Ajoute la dernière sous-chaîne restante au tableau
+
+  if (newWordSplit !== "") {
+    array.push(newWordSplit);
+  }
+
   return array;
 };
 
-const stringToCut = process.argv[2];
-const stringSeparator = [" ", "\t", "\n"]; // Tableau de séparateurs
+const string = process.argv[2];
+const separator = " ";
+const result = splitedString(string, separator);
 
-console.log(split(stringToCut, stringSeparator));
+for (let i = 0; i < result.length; i++) {
+  console.log(result[i]);
+}
