@@ -11,6 +11,7 @@ monsieur
 
 Afficher error et quitter le programme en cas de problèmes d’arguments.*/
 
+//fonction
 const findUniqueValue = (args) => {
   if (args.length - 2 < 3) {
     return "Erreur : pas assez d'arguments !";
@@ -36,6 +37,7 @@ const findUniqueValue = (args) => {
   return "Erreur : Aucune valeur unique trouvée";
 };
 
+//parsing
 const args = process.argv;
 const result = findUniqueValue(args);
 
