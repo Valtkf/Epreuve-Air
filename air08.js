@@ -29,13 +29,11 @@ const sortedFusion = (array1, array2) => {
     }
   }
 
-  // Ajouter les éléments restants de array1
   while (i < array1.length) {
     newArray.push(array1[i]);
     i++;
   }
 
-  // Ajouter les éléments restants de array2
   while (j < array2.length) {
     newArray.push(array2[j]);
     j++;
