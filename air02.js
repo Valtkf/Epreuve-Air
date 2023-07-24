@@ -16,35 +16,20 @@ Afficher error et quitter le programme en cas de problèmes d’arguments.*/
 // Récupérer les arguments de la ligne de commande (chaînes de caractères)
 
 //fonction
-const concatanateStrings = (arrayOfStrings, Separator) => {
-  if (!Array.isArray(arrayOfStrings) || typeof Separator !== "string") {
-    return "Erreur : les arguments ne sont pas valides";
-  }
-
-  let result = "";
-
-  for (let i = 0; i < arrayOfStrings.length; i++) {
-    result += arrayOfStrings[i] + Separator;
-  }
-
-  result = result.slice(0, -Separator.length);
-
-  return result;
+const splitString = (stringToCut) => {
+  const array = stringToCut.split(" ");
+  return array;
 };
 
-//parsing
-const args = process.argv.slice(2);
-const Separator = args[args.length - 1];
+const inputString = process.argv[2];
 
-//gestion d'erreurs
-if (!Separator || Separator !== " ") {
-  console.log("Erreur");
-  process.exit(1);
+if (inputString === undefined) {
+  console.log("Erreur : Veuillez fournir une chaîne à découper.");
+} else {
+  const result = splitString(inputString);
+  if (result !== undefined) {
+    for (let i = 0; i < result.length; i++) {
+      console.log(result[i]);
+    }
+  }
 }
-
-// Enlever les guillemets autour des mots
-const arrayOfStrings = args.map((arg) => arg.replace(/^"(.*)"$/, "$1"));
-
-const finalResult = concatanateStrings(arrayOfStrings, Separator);
-
-console.log(finalResult);
