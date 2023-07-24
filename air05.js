@@ -15,7 +15,7 @@ L’opération à appliquer sera toujours le dernier élément.
 Afficher error et quitter le programme en cas de problèmes d’arguments.*/
 
 const recognizeSubstractionAddition = (args, operation) => {
-  if (!args) {
+  if (!args || args.length === 0) {
     console.error("Erreur : Il n'y a pas de chiffres");
     process.exit(1);
   }
@@ -44,7 +44,13 @@ const recognizeSubstractionAddition = (args, operation) => {
     }
   });
 
-  console.log(result.join(" "));
+  // Stocker les nombres dans un tableau vide
+  const output = [];
+  for (let i = 0; i < result.length; i++) {
+    output.push(result[i]);
+  }
+
+  console.log(output.join(" "));
 };
 
 const args = process.argv.slice(2, -1);
