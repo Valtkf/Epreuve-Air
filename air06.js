@@ -14,28 +14,24 @@ Michel
 $> python exo.py “Michel” “Albert” “Thérèse” “Benoit” “a”
 Michel, Thérèse, Benoit*/
 
-const findSameCharacter = (arrayOfStrings, character) => {
-  const newArray = [];
+const checkSimilarLetter = (args, character) => {
+  const argumentsWithNoLetterA = [];
+  const lowerCaseCharacter = character.toLowerCase();
 
-  if (arrayOfStrings.length === 0 || character.length === 0) {
-    console.error("Erreur: veuillez entrer un argument");
-    process.exit(1);
-  }
-  if (!isNaN(arrayOfStrings) || !isNaN(character)) {
-    console.log("Erreur: veuillez entrer des lettres");
-    process.exit(1);
-  }
-
-  for (let i = 0; i < arrayOfStrings.length; i++) {
-    if (arrayOfStrings[i].includes(character)) {
-      newArray.push(arrayOfStrings[i]);
+  for (const arg of args) {
+    const lowerCaseArg = arg.toLowerCase();
+    if (!lowerCaseArg.includes(lowerCaseCharacter)) {
+      argumentsWithNoLetterA.push(arg);
     }
   }
-  return newArray;
+
+  if (argumentsWithNoLetterA.length === 0) {
+    console.log("Tous les arguments comportent au moins une lettre identique.");
+  } else {
+    console.log(argumentsWithNoLetterA.join(", "));
+  }
 };
 
-const arrayOfStrings = process.argv.slice(2);
+const args = process.argv.slice(2);
 const character = process.argv[process.argv.length - 1];
-const result = findSameCharacter(arrayOfStrings, character);
-
-console.log(result);
+checkSimilarLetter(args, character);
