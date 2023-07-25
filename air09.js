@@ -14,20 +14,18 @@ Albert, Thérèse, Benoit, Michel*/
 const rotation = (array) => {
   const newArray = [];
 
-  if (args.length === 0) {
+  if (array.length === 0) {
     console.log("Erreur : Veuillez entrer un argument");
     process.exit(1);
   }
 
   for (let i = 0; i < array.length; i++) {
-    if (i === 0) {
-      newArray[array.length - 1] = array[0];
+    if (i === array.length - 1) {
+      newArray[i] = array[0];
     } else {
-      newArray[i - 1] = array[i];
+      newArray[i] = array[i + 1];
     }
   }
-
-  newArray.push(array[0]);
 
   return newArray;
 };
